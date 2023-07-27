@@ -20,14 +20,16 @@
     "triggerAllTests-chrome": "npx cypress run --browser chrome",
     "triggerAllTests-dashboard": "npx cypress run --record --key 68861ec2-a3d5-4dc6-9ee3-5ddf154431b0",
     "triggerAllTests-webdriveruni": "npx cypress run --spec cypress/e2e/webdriver-uni/*",
-    "triggerAllTests-autoTestStore": "npx cypress run --spec cypress/e2e/automation-test-store",
+    "triggerAllTests-autoTestStore": "npx cypress run --spec cypress/e2e/automation-test-store/*",
+    "triggerAllTests-autoTestStore-dashboard": "npx cypress run --spec cypress/e2e/automation-test-store/* --record --key 68861ec2-a3d5-4dc6-9ee3-5ddf154431b0",
     "junit-merge": "npx junit-merge -d cypress/results/junit -o cypress/results/junit/results.xml",
     "delete-junit-report": "rm -rf cypress/results/junit/results.xml",
     "delete-results": "rm -rf cypress/results/* || true",
     "mochawesome-merge": "npx mochawesome-merge cypress/results/mochawesome/*.json > mochawesome.json && npx marge mochawesome.json",
     "delete-mochawesome-report": "rm -rf mochawesome-report/* || true",
     "cypress-regression-pack": "npm run delete-results && npm run delete-mochawesome-report && npm run triggerAllTests-headless && npm run mochawesome-merge",
-    "triggerAllTests-staging": "npx cypress run --env configFile=staging"
+    "triggerAllTests-staging": "npx cypress run --env configFile=staging",
+    "cypress-multi-browser": "npm run triggerAllTests-autoTestStore -- --browser chrome --headed & npm run triggerAllTests-autoTestStore -- --browser firefox --headed"
     },
   "author": "Meerim",
   "license": "ISC"
